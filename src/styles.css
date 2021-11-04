@@ -64,3 +64,28 @@ html, body {
 .react-datetime-picker__wrapper {
     border: 0px solid gray !important;
 }
+
+
+/* FABS */
+
+.fab {
+    background-color: #367AA7 !important;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    color: white;
+    border-radius: 100%;
+    bottom: 30px;
+    font-size: 20px;
+    padding: 15px;
+    position: fixed;
+    right: 30px;
+    cursor: pointer;
+}
+
+.fab-danger {
+    bottom: 25px;    
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    font-size: 15px;
+    padding: 10px;
+    position: fixed;
+    left: 30px;
+}
