@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 import Swal from 'sweetalert2';
-import { eventAddnew, eventClearActiveNote, eventUpdated } from '../../actions/events';
+import { eventClearActiveNote, eventStartAddNew, eventUpdated } from '../../actions/events';
 
 const customStyles = {
     content: {
@@ -104,17 +104,9 @@ export const CalendarModal = () => {
 
         } else { // Si no existe evento activo es que estamos creando uno nuevo
 
-            dispatch(eventAddnew({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: 123,
-                    name: 'Ran Kirlian'
-                }
-            })
+            dispatch(eventStartAddNew(formValues)
             ); //Añade el evento al calendario
         }
-
 
         setTitleValid(true);
         closeModal()
