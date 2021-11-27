@@ -4,7 +4,7 @@ import { types } from "../types/types";
 
 const initialState = {
     events: [
-        {
+/*         { // For reference
             id: new Date().getTime(),
             title: 'Cumpleaños Ran',
             start: moment().toDate(),
@@ -15,7 +15,7 @@ const initialState = {
                 _id: 123,
                 name: 'Ran Kirlian'
             },
-        }
+        } */
     ],
     activeEvent: null // evento sobre el que hacemos click 
 }
@@ -65,6 +65,17 @@ export const calendarReducer = (state = initialState, action) => {
                     e => (e.id !== state.activeEvent.id)
                 ),
                 activeEvent: null // vaciamos el evento activo
+            }
+
+        case types.eventLoaded:
+            return {
+                ...state,
+                events: [...action.payload] // devuelve todos los eventos
+            }
+
+        case types.eventLogout:
+            return {
+                ...initialState
             }
         default:
             return state

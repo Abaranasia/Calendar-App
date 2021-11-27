@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
+import { eventLogout } from "./events";
 
 
 export const startLogin = (email, password) => {
@@ -48,11 +49,11 @@ export const startRegister = (name, email, password) => {
 }
 
 
-export const startChecking = () => {
+export const startChecking = () => { // Comprobamos que se ha renovado el token
     return async (dispatch) => {
         const resp = await fetchConToken('auth/renew', {}, 'GET'); // Nuestro helper sin token
         const body = await resp.json();
-        console.log(body)
+        //console.log(body)
 
         if (body.ok) {
             localStorage.setItem('token', body.token)
@@ -73,7 +74,9 @@ export const startChecking = () => {
 export const startLogout = () => {
     return (dispatch) => {
         localStorage.clear();
-        dispatch(logout())
+        dispatch(eventLogout()); // limpia evento activo
+        dispatch(eventLogout()); // limpia evento activo
+        dispatch(logout());  //limpiar auth y localStorage
     }
 }
 

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../actions/ui';
-import { eventClearActiveNote, eventSetActive } from '../../actions/events';
+import { eventClearActiveNote, eventSetActive, eventStartLoading } from '../../actions/events';
 
 
 import { Navbar } from '../ui/Navbar';
@@ -40,9 +40,14 @@ export const CalendarScreen = () => {
     const dispatch = useDispatch();
 
     const { events, activeEvent } = useSelector(state => state.calendar); // Trae del state todos los eventos del calendario
+    const { uid } = useSelector(state => state.auth); // Trae del state el uid del usuario
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month')
 
+
+    useEffect(() => {
+        dispatch(eventStartLoading()) // Carga todos los eventos de la BBDD de ese usuario
+    }, [dispatch])
 
     const onDoubleClick = (e) => {
         //console.log(e)
@@ -63,8 +68,13 @@ export const CalendarScreen = () => {
 
 
     const eventStyleGetter = (event, start, end, isSelected) => {
+        /**
+         * Permite cambiar estéticamente los eventos de forma que
+         * se muestren de un color u otro dependiendo de si son eventos del propio usuario u otro
+         */
+
         const style = {
-            backgroundColor: '#367AA7',
+            backgroundColor: (uid === event.user._id) ? '#367AA7' : '#465660',
             borderRadius: '0px',
             opacity: 0.8,
             color: 'white',
