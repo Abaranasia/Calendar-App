@@ -10,7 +10,7 @@ export const startLogin = (email, password) => {
         // console.log("AUTH: ", email, password);
         const resp = await fetchSinToken('auth', { email, password }, 'POST'); // Nuestro helper sin token
         const body = await resp.json();
-        console.log(body)
+        // console.log(body)
 
         if (body.ok) {
             localStorage.setItem('token', body.token)
@@ -32,7 +32,7 @@ export const startRegister = (name, email, password) => {
     return async (dispatch) => {
         const resp = await fetchSinToken('auth/new', { name, email, password }, 'POST'); // Nuestro helper sin token
         const body = await resp.json();
-        console.log(body)
+        // console.log(body)
 
         if (body.ok) {
             localStorage.setItem('token', body.token)
@@ -53,7 +53,7 @@ export const startChecking = () => { // Comprobamos que se ha renovado el token
     return async (dispatch) => {
         const resp = await fetchConToken('auth/renew', {}, 'GET'); // Nuestro helper sin token
         const body = await resp.json();
-        //console.log(body)
+        console.log(body)
 
         if (body.ok) {
             localStorage.setItem('token', body.token)

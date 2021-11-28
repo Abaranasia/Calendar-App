@@ -1,4 +1,16 @@
-export const types = {
+import { types } from "../../types/types";
+
+describe('Types tests', () => {
+
+
+
+    test('types should be correct', () => {
+        expect(types).toEqual(typesMock)
+    });
+});
+
+
+const typesMock = {
 
     uiOpenModal: '[ui] Open modal',
     uiCloseModal: '[ui] Close modal',
