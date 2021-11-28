@@ -20,7 +20,9 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#root'); // id del elemento raiz de index.html
+if (process.env.NODE_ENV !== 'test') { // Parche provisional para evitar fallo en testing
+    Modal.setAppElement('#root'); // id del elemento raiz de index.html
+}
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours'); // Esto establece el momento inicial no ahora si no a la próxima hora punta posible
 const later = now.clone().add(1, 'hours'); //función de moment que clona otro momento

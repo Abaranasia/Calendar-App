@@ -74,7 +74,7 @@ describe('Auth tests', () => {
         await store.dispatch(startRegister('test@test.com', '123456', 'Test'));
 
         const actions = store.getActions();
-        console.log(actions);
+       // console.log(actions);
 
         expect(actions[0]).toEqual({
             type: types.authLogin,
@@ -107,7 +107,7 @@ describe('Auth tests', () => {
 
         //    localStorage.setItem('token', token); // Porque no da error, pero no hay token en la petición, pero aún así...
 
-        console.log(actions)
+      //  console.log(actions)
         expect(localStorage.setItem).toHaveBeenCalledWith('token', 'ABC123abc123')
     });
 })

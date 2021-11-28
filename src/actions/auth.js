@@ -53,7 +53,7 @@ export const startChecking = () => { // Comprobamos que se ha renovado el token
     return async (dispatch) => {
         const resp = await fetchConToken('auth/renew', {}, 'GET'); // Nuestro helper sin token
         const body = await resp.json();
-        console.log(body)
+        //console.log(body)
 
         if (body.ok) {
             localStorage.setItem('token', body.token)
