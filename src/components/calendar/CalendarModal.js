@@ -130,6 +130,7 @@ export const CalendarModal = () => {
             className="modal" //Clase principal
             overlayClassName="modal-fondo" //Estilo de fondo personalizado
             closeTimeoutMS={200} // Animación de cierre
+            ariaHideApp={!process.env.NODE_ENV === 'test'} // Ponemos esto por que los test no pueden dibujar el modal
         >
             <h2> Nuevo evento </h2>
             <hr />

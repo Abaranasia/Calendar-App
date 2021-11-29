@@ -16,3 +16,6 @@ jest.mock('sweetalert2', () => ({
     fire: jest.fn(),
     close: jest.fn(),
 }));
+
+HTMLCanvasElement.prototype.getContext = () => { };
+// Mockeamos esto que solo es una molestia si tenemos que evaluar elementos modales
